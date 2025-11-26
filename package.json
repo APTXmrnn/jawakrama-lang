@@ -20,5 +20,13 @@
     "interpreter"
   ],
   "author": "Novens",
-  "license": "GPL-3.0"
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/APTXmrnn/jawakrama-lang.git"
+  },
+  "bugs": {
+    "url": "https://github.com/APTXmrnn/jawakrama-lang/issues"
+  },
+  "homepage": "https://github.com/APTXmrnn/jawakrama-lang#readme"
 }
