@@ -1,0 +1,8 @@
+serat("--- CONTO: Rekursi (Faktorial) ---");
+karya faktorial(n) {
+    menawi (n === 0 || n === 1) {
+        wangsul 1;
+    }
+    wangsul n * faktorial(n - 1);
+}
+serat("Faktorial 5 inggih punika: " + faktorial(5));

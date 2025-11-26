@@ -1,0 +1,5 @@
+serat("--- CONTO: Tes Kalepatan ---");
+
+// Intentional ReferenceError: 'y' is not defined
+// Should print: Kalepatan Referensi: y boten dipun tepang
+serat(y); 

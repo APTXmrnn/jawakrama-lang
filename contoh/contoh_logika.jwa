@@ -1,0 +1,12 @@
+serat("--- CONTO: Logika (FizzBuzz) ---");
+kagem (damel i = 1; i <= 15; i++) {
+    menawi (i % 3 === 0 && i % 5 === 0) {
+        serat("FizzBuzz");
+    } sanesipun menawi (i % 3 === 0) {
+        serat("Fizz");
+    } sanesipun menawi (i % 5 === 0) {
+        serat("Buzz");
+    } sanesipun {
+        serat(i);
+    }
+}

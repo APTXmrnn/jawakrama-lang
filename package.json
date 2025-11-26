@@ -1,0 +1,24 @@
+{
+  "name": "jawakrama",
+  "version": "1.0.0",
+  "description": "Bahasa pemrograman berbasis Jawa Krama (Jawa Alus)",
+  "main": "pustaka/src/index.js",
+  "bin": {
+    "jawakrama": "./pustaka/bin/jawakrama",
+    "mlyu": "./pustaka/bin/jawakrama",
+    "jawa": "./pustaka/bin/jawakrama"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node pustaka/src/index.js"
+  },
+  "keywords": [
+    "javanese",
+    "programming",
+    "language",
+    "compiler",
+    "interpreter"
+  ],
+  "author": "Novens",
+  "license": "GPL-3.0"
+}

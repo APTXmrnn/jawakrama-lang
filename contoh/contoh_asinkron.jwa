@@ -1,0 +1,17 @@
+serat("--- CONTO: Asinkron ---");
+karya ngrantosSekedap(ms) {
+    wangsul enggal Promise(resolve => setTimeout(resolve, ms));
+}
+
+asinkron karya prosesData() {
+    serat("Miwiti proses...");
+    cobi {
+        ngantos ngrantosSekedap(1000);
+        serat("Proses rampung!");
+    } cepeng (error) {
+        serat("Wonten kalepatan: " + error);
+    } pungkasanipun {
+        serat("Sesi dipun tutup.");
+    }
+}
+prosesData();

@@ -1,0 +1,25 @@
+serat("--- CONTO: Pilihan (Switch) ---");
+damel dinten = 3;
+damel namiDinten = "";
+
+pilihan (dinten) {
+    perkawis 1:
+        namiDinten = "Senin";
+        kendel;
+    perkawis 2:
+        namiDinten = "Selasa";
+        kendel;
+    perkawis 3:
+        namiDinten = "Rabu";
+        kendel;
+    perkawis 4:
+        namiDinten = "Kamis";
+        kendel;
+    perkawis 5:
+        namiDinten = "Jumat";
+        kendel;
+    baku:
+        namiDinten = "Sabtu/Minggu";
+}
+
+serat("Dinten punika: " + namiDinten);

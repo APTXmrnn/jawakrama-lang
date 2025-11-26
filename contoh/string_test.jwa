@@ -1,0 +1,10 @@
+serat("--- CONTO: Tes String ---");
+
+// Should print: "damel" (not "let")
+serat("damel");
+
+// Should print: "kulo badhe damel" (not "kulo badhe let")
+serat("kulo badhe damel");
+
+// Should print: "menawi" (not "if")
+serat("menawi");

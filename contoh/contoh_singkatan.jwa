@@ -1,0 +1,28 @@
+serat("--- CONTO: Singkatan (Aliases) ---");
+
+// mnw (menawi) - if
+// sanes (sanesipun) - else
+damel x = 10;
+mnw (x > 5) {
+    serat("x langkung saking 5 (ngangge mnw)");
+} sanes {
+    serat("x kirang saking 5 (ngangge sanes)");
+}
+
+// kgm (kagem) - for
+serat("\nLooping ngangge kgm:");
+kgm (damel i = 0; i < 3; i++) {
+    serat("Iterasi: " + i);
+}
+
+// bab (perkawis) - case inside switch (pilihan)
+// Note: 'pilihan' does not have a shorthand yet, only 'perkawis' -> 'bab'
+serat("\nSwitch ngangge bab:");
+damel opsi = 1;
+pilihan (opsi) {
+    bab 1:
+        serat("Opsi 1 dipun pilih");
+        kendel;
+    baku:
+        serat("Baku");
+}

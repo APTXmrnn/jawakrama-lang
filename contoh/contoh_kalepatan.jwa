@@ -1,0 +1,13 @@
+serat("--- CONTO: Kalepatan (Try/Catch) ---");
+cobi {
+    serat("Nyobi mbagi angka...");
+    damel asil = 10 / 0; // In JS this is Infinity, not error, but let's throw one manually for demo
+    menawi (!isFinite(asil) || isNaN(asil)) {
+        bucal enggal Error("Boten saged mbagi kaliyan nol!");
+    }
+    serat("Asil: " + asil);
+} cepeng (error) {
+    serat("Kecepeng kalepatan: " + error.message);
+} pungkasanipun {
+    serat("Pungkasanipun rampung.");
+}

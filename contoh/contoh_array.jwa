@@ -1,0 +1,8 @@
+serat("--- CONTO: Array ---");
+damel angka = [1, 2, 3, 4, 5];
+damel total = 0;
+
+kagem (damel i = 0; i < angka.length; i++) {
+    total += angka[i];
+}
+serat("Total saking array: " + total);

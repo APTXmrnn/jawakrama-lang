@@ -1,0 +1,19 @@
+serat("--- CONTO: Golongan (Class) ---");
+golongan Kewan {
+    constructor(nami) {
+        punika.nami = nami;
+    }
+
+    suanten() {
+        serat(punika.nami + " saweg suanten.");
+    }
+}
+
+golongan Kucing ngewarisi Kewan {
+    suanten() {
+        serat(punika.nami + " ngendika: Meong!");
+    }
+}
+
+damel kucingKulo = enggal Kucing("Mochi");
+kucingKulo.suanten();
