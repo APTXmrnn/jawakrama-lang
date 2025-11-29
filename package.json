@@ -1,6 +1,6 @@
 {
   "name": "jawakrama",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Bahasa pemrograman berbasis Jawa Krama (Jawa Alus)",
   "main": "pustaka/src/index.js",
   "bin": {
