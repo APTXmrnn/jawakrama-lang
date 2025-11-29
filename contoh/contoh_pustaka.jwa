@@ -1,0 +1,18 @@
+// Contoh Pustaka Standar (Standard Library)
+
+serat("--- Wicalan (Matematika) ---");
+serat("Nilai PI: " + Wicalan.pi);
+serat("Akar 25: " + Wicalan.akar(25));
+serat("Pangkat (2^3): " + Wicalan.pangkat(2, 3));
+serat("Maksimum (10, 20): " + Wicalan.maks(10, 20));
+
+serat("\n--- Serat (String) ---");
+damel salam = "sugeng enjang";
+serat("Asli: " + salam);
+serat("Ageng (Upper): " + Serat.ageng(salam));
+serat("Alit (Lower): " + Serat.alit("KABAR"));
+serat("Gantos (Replace): " + Serat.gantos(salam, "enjang", "sonten"));
+
+serat("\n--- Wekdal (Waktu) ---");
+serat("Wekdal Sapunika: " + Wekdal.sapunika());
+serat("Taun: " + Wekdal.taun());

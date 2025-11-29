@@ -1,0 +1,24 @@
+// Contoh Pengolahan Data (Array Methods)
+
+damel angka = [1, 2, 3, 4, 5];
+serat("Data Awal: " + angka.gabung(", "));
+
+// 1. Peta (Map) - Ngitung kuadrat
+damel kuadrat = angka.peta(x => x * x);
+serat("Kuadrat: " + kuadrat.gabung(", "));
+
+// 2. Saring (Filter) - Nyaring angka genap
+damel genap = angka.saring(x => x % 2 == 0);
+serat("Genap: " + genap.gabung(", "));
+
+// 3. Uda (Reduce) - Ngitung total
+damel total = angka.uda((a, b) => a + b, 0);
+serat("Total: " + total);
+
+// 4. Pados (Find) - Madosi angka > 3
+damel ketemu = angka.pados(x => x > 3);
+serat("Angka > 3 ingkang kaping pisan: " + ketemu);
+
+// 5. Wonten Ing (Includes) - Ngecek angka
+damel wontenTiga = angka.wonten_ing(3);
+serat("Wonten angka 3? " + wontenTiga);

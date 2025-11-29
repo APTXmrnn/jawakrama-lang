@@ -1,0 +1,10 @@
+// Tes Source Maps
+serat("Mulai tes source map...");
+
+// Fungsi ingkang damel error
+karya damelError() {
+    serat("Badhe error...");
+    bucal enggal Error("Iki error sing disengaja!");
+}
+
+damelError();

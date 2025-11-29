@@ -68,6 +68,14 @@ const KEYWORDS = {
     'bab': 'case',         // Alias for perkawis
     'kgm': 'for',          // Alias for kagem
     'mnw': 'if',           // Alias for menawi
+
+    // Array Methods
+    'peta': 'map',
+    'saring': 'filter',
+    'uda': 'reduce',
+    'wonten_ing': 'includes',
+    'gabung': 'join',
+    'pados': 'find',
 };
 
 function transpile(sourceCode) {
@@ -99,4 +107,34 @@ function transpile(sourceCode) {
     });
 }
 
-module.exports = { transpile };
+function generateSourceMap(sourceCode, fileName) {
+    const lines = sourceCode.split('\n');
+    const lineCount = lines.length;
+
+    // 1:1 Identity Mapping
+    // Line 1: AAAA (GenLine 0, SourceIndex 0, OrigLine 0, OrigCol 0)
+    // Line 2+: AACA (GenLine +1, SourceIndex 0, OrigLine +1, OrigCol 0)
+
+    let mappings = 'AAAA';
+    for (let i = 1; i < lineCount; i++) {
+        mappings += ';AACA';
+    }
+
+    // Use basename or relative path to avoid Windows path issues in JSON/SourceMap
+    // For simplicity in this context, we use the basename if it's an absolute path
+    const cleanFileName = fileName.replace(/\\/g, '/');
+    const encodedFileName = encodeURI(cleanFileName);
+
+    const map = {
+        version: 3,
+        file: encodedFileName,
+        sources: [encodedFileName],
+        sourcesContent: [sourceCode],
+        names: [],
+        mappings: mappings
+    };
+
+    return JSON.stringify(map);
+}
+
+module.exports = { transpile, generateSourceMap };

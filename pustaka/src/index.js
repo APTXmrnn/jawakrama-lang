@@ -1,6 +1,11 @@
 const fs = require('fs');
 const path = require('path');
-const { transpile } = require('../transpiler');
+const readline = require('readline');
+const { transpile, generateSourceMap } = require('../transpiler');
+const { Wicalan, Serat, Wekdal } = require('./stdlib');
+
+// Install source map support
+require('source-map-support').install();
 
 function run(command, arg) {
     if (command === 'init') {
@@ -8,15 +13,14 @@ function run(command, arg) {
         return;
     }
 
-    // Default behavior: execute file
-    const filePath = command;
-    if (!filePath) {
-        console.error("Ampun kesupen nyukani nami file (Please provide a file name).");
-        console.error("Conto: jawa conto.jwa (utawi: mlyu conto.jwa)");
-        console.error("Utawi: jawa init <nami_proyek>");
-        process.exit(1);
+    // If no command provided, start REPL
+    if (!command) {
+        startRepl();
+        return;
     }
 
+    // Default behavior: execute file
+    const filePath = command;
     const absolutePath = path.resolve(filePath);
 
     if (!fs.existsSync(absolutePath)) {
@@ -27,11 +31,89 @@ function run(command, arg) {
     const content = fs.readFileSync(absolutePath, 'utf-8');
     try {
         const jsCode = transpile(content);
-        // Execute the transpiled code
-        eval(jsCode);
+
+        // Generate Source Map
+        const sourceMap = generateSourceMap(content, absolutePath);
+        const mapPath = absolutePath + '.map';
+        fs.writeFileSync(mapPath, sourceMap);
+
+        const mapFileName = path.basename(mapPath);
+        // Add sourceURL so source-map-support can find the file and map
+        const codeWithMap = `${jsCode}\n//# sourceMappingURL=${mapFileName}\n//# sourceURL=${absolutePath}`;
+
+        // Execute the transpiled code with stdlib
+        const context = {
+            console,
+            require,
+            process,
+            Wicalan,
+            Serat,
+            Wekdal
+        };
+
+        // Create a function with the context variables
+        const runInContext = new Function(...Object.keys(context), codeWithMap);
+        runInContext(...Object.values(context));
     } catch (error) {
         handleError(error);
     }
+}
+
+function startRepl() {
+    console.log("Sugeng Rawuh ing Jawakrama REPL (v1.0.0)");
+    console.log("Ketik 'kendel' utawi Ctrl+C kangge medal.\n");
+
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+        prompt: 'jawa> '
+    });
+
+    rl.prompt();
+
+    rl.on('line', (line) => {
+        const input = line.trim();
+        if (input === 'kendel' || input === 'exit') {
+            rl.close();
+            return;
+        }
+
+        if (input) {
+            try {
+                const jsCode = transpile(input);
+                // Simple eval for REPL with stdlib
+                // Note: In a real REPL we might want to maintain context between lines
+                // For now, we just expose the stdlib
+
+                // We use a wrapper to allow return values to be printed
+                const wrappedCode = `
+                    (function() {
+                        try {
+                            return eval(\`${jsCode.replace(/`/g, '\\`')}\`);
+                        } catch(e) {
+                            throw e;
+                        }
+                    })()
+                `;
+
+                // Expose stdlib to global scope for REPL (simplified approach)
+                global.Wicalan = Wicalan;
+                global.Serat = Serat;
+                global.Wekdal = Wekdal;
+
+                const result = eval(jsCode);
+                if (result !== undefined) {
+                    console.log(result);
+                }
+            } catch (error) {
+                handleError(error);
+            }
+        }
+        rl.prompt();
+    }).on('close', () => {
+        console.log('\nMatur nuwun!');
+        process.exit(0);
+    });
 }
 
 function initProject(projectName) {
@@ -77,12 +159,16 @@ function handleError(error) {
         .replace(/Assignment to constant variable/g, 'Ngangge variabel tetep (const) malih')
         .replace(/Invalid or unexpected token/g, 'Tanda boten sah utawi boten dipun mangertosi')
         .replace(/missing/g, 'ical/kirang')
-        .replace(/after argument list/g, 'sasampunipun daptar argumen');
+        .replace(/after argument list/g, 'sasampunipun daptar argumen')
+        .replace(/is not a function/g, 'sanes fungsi')
+        .replace(/Cannot read property/g, 'Boten saged maos properti')
+        .replace(/of undefined/g, 'saking ingkang dereng dipun definisikaken')
+        .replace(/of null/g, 'saking kosong (null)');
 
     console.error(`\n🛑 ${errorName}: ${errorMessage}`);
     if (error.stack) {
         // Optional: Filter stack trace to show only relevant lines if needed
-        // console.error(error.stack.split('\n')[1]); 
+        console.error(error.stack.split('\n')[1]);
     }
 }
 // Check if running directly

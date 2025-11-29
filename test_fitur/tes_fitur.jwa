@@ -1,0 +1,35 @@
+// Tes Fitur Baru Jawakrama
+
+// 1. Tes Keyword Array
+damel angka = [1, 2, 3, 4, 5];
+
+// Map (peta)
+damel kuadrat = angka.peta(x => x * x);
+serat("Kuadrat: " + kuadrat.gabung(", "));
+
+// Filter (saring)
+damel genap = angka.saring(x => x % 2 == 0);
+serat("Genap: " + genap.gabung(", "));
+
+// Reduce (uda)
+damel total = angka.uda((a, b) => a + b, 0);
+serat("Total: " + total);
+
+// Find (pados)
+damel ketemu = angka.pados(x => x > 3);
+serat("Ketemu > 3: " + ketemu);
+
+// Includes (wonten_ing)
+damel wontenTiga = angka.wonten_ing(3);
+serat("Wonten angka 3? " + wontenTiga);
+
+// 2. Tes Standard Library
+serat("\n--- Standard Library ---");
+serat("PI: " + Wicalan.pi);
+serat("Akar 16: " + Wicalan.akar(16));
+serat("Acak: " + Wicalan.acak);
+
+damel teks = "sugeng enjang";
+serat("Kapital: " + Serat.ageng(teks));
+
+serat("Dinten: " + Wekdal.dinten());

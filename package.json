@@ -28,5 +28,8 @@
   "bugs": {
     "url": "https://github.com/APTXmrnn/jawakrama-lang/issues"
   },
-  "homepage": "https://github.com/APTXmrnn/jawakrama-lang#readme"
+  "homepage": "https://github.com/APTXmrnn/jawakrama-lang#readme",
+  "dependencies": {
+    "source-map-support": "^0.5.21"
+  }
 }
